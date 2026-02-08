@@ -121,58 +121,57 @@ export function WhatsAppChat() {
 
       {/* Chat Background Pattern */}
       <div
-        className="flex-1 overflow-y-auto px-4 py-3 bg-[#0b141a] chat-scrollbar"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' 
-          xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23182229' 
-          fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-
-          4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
+  className="flex-1 overflow-y-auto px-4 py-3 bg-[#0b141a] chat-scrollbar scroll-smooth"
+  style={{
+    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23182229' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+  }}
+>
+  <div className="flex flex-col gap-2">
+    {messages.map((message) => (
+      <div
+        key={message.id}
+        className={`flex ${
+          message.sender === "user" ? "justify-end" : "justify-start"
+        }`}
       >
-        <div className="flex flex-col gap-2">
-          {messages.map((message) => (
-            <div
-              key={message.id}
-              className={`flex ${
-                message.sender === "user" ? "justify-end" : "justify-start"
-              }`}
-            >
-              <div
-                className={`max-w-[75%] rounded-lg px-3 py-2 ${
-                  message.sender === "user"
-                    ? "bg-[#005c4b] text-white rounded-br-none"
-                    : "bg-[#202c33] text-white rounded-bl-none"
-                }`}
-              >
-                <p className="text-sm leading-relaxed break-words">
-                  {message.text}
-                </p>
-                <p
-                  className={`text-[10px] mt-1 text-right ${
-                    message.sender === "user"
-                      ? "text-[#b8d3cc]"
-                      : "text-[#8696a0]"
-                  }`}
-                >
-                  {formatTime(message.timestamp)}
-                </p>
-              </div>
-            </div>
-          ))}
-          {isTyping && (
-            <div className="flex justify-start">
-              <div className="bg-[#202c33] rounded-lg rounded-bl-none px-4 py-3">
-                <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-[#8696a0] rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                  <div className="w-2 h-2 bg-[#8696a0] rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                  <div className="w-2 h-2 bg-[#8696a0] rounded-full animate-bounce"></div>
-                </div>
-              </div>
-            </div>
-          )}
-          <div ref={messagesEndRef} />
+        <div
+          className={`max-w-[75%] rounded-lg px-3 py-2 ${
+            message.sender === "user"
+              ? "bg-[#005c4b] text-white rounded-br-none"
+              : "bg-[#202c33] text-white rounded-bl-none"
+          }`}
+        >
+          <p className="text-sm leading-relaxed break-words">
+            {message.text}
+          </p>
+          <p
+            className={`text-[10px] mt-1 text-right ${
+              message.sender === "user"
+                ? "text-[#b8d3cc]"
+                : "text-[#8696a0]"
+            }`}
+          >
+            {formatTime(message.timestamp)}
+          </p>
         </div>
       </div>
+    ))}
+
+    {isTyping && (
+      <div className="flex justify-start">
+        <div className="bg-[#202c33] rounded-lg rounded-bl-none px-4 py-3">
+          <div className="flex gap-1">
+            <div className="w-2 h-2 bg-[#8696a0] rounded-full animate-bounce [animation-delay:-0.3s]" />
+            <div className="w-2 h-2 bg-[#8696a0] rounded-full animate-bounce [animation-delay:-0.15s]" />
+            <div className="w-2 h-2 bg-[#8696a0] rounded-full animate-bounce" />
+          </div>
+        </div>
+      </div>
+    )}
+
+    <div ref={messagesEndRef} />
+  </div>
+</div>
 
       {/* Input Area */}
       <div className="bg-[#202c33] px-3 py-2 flex items-end gap-2">
