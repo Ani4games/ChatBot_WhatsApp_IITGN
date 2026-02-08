@@ -81,6 +81,11 @@
 }
 .chat-scrollbar::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb);
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+}
+.chat-scrollbar:hover::-webkit-scrollbar-thumb {
+  opacity: 0.8;
 }
 @layer base {
   /* * {
