@@ -1,7 +1,7 @@
 // import LoginScreen from "../../MobileApp_UI";
 import { WhatsAppChat } from "./components/whatsapp-chat";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ProtectedRoute from "../../protectRoute";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -10,9 +10,8 @@ export default function App() {
          <Route
           path="/whatsapp"
           element={
-            <ProtectedRoute>
+
               <WhatsAppChat />
-            </ProtectedRoute>
           }
         />
       </Routes>
